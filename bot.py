@@ -20,8 +20,7 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    # old style:
-    # await bot.send_message(message.chat.id, message.text)
+    # Здесь идет обработка сообщений
     val = random.randint(0, 5)
     if val == 0:
         await message.answer("three hundred bucks")
