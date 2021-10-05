@@ -22,6 +22,8 @@ async def send_welcome(message: types.Message):
 async def echo(message: types.Message):
     # Здесь идет обработка сообщений
     val = random.randint(0, 5)
+    photo = open(f"billy.jpg", 'rb')
+    await message.answer_photo(photo=photo)
     if val == 0:
         await message.answer("three hundred bucks")
     elif val == 1:
