@@ -16,15 +16,15 @@ start_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1).ad
 )
 
 # ------------------------ButtonsForChoosingProfession--------------------------
-bth_database_administrator = types.InlineKeyboardButton(text="1️⃣", callback_data="btn_1")
-btn_business_architect = types.InlineKeyboardButton(text="2️⃣", callback_data="btn_2")
-btn_development_team_leader = types.InlineKeyboardButton(text="3️⃣", callback_data="btn_3")
-btn_personnel_evaluator = types.InlineKeyboardButton(text="4️⃣", callback_data="btn_4")
-btn_system_architect = types.InlineKeyboardButton(text="5️⃣", callback_data="btn_5")
-btn_devops_engineer = types.InlineKeyboardButton(text="6️⃣", callback_data="btn_6")
-btn_project_manager = types.InlineKeyboardButton(text="7️⃣", callback_data="btn_7")
-btn_presale_manager = types.InlineKeyboardButton(text="8️⃣", callback_data="btn_8")
-vacancy_selection_keyboard = types.InlineKeyboardMarkup(row_width=4).add(
+bth_database_administrator = types.InlineKeyboardButton(text="Администратор баз данных", callback_data="btn_1")
+btn_business_architect = types.InlineKeyboardButton(text="Бизнес-архитектор", callback_data="btn_2")
+btn_development_team_leader = types.InlineKeyboardButton(text="Руководитель группы разработки", callback_data="btn_3")
+btn_personnel_evaluator = types.InlineKeyboardButton(text="Специалист по оценке персонала", callback_data="btn_4")
+btn_system_architect = types.InlineKeyboardButton(text="Системный архитектор", callback_data="btn_5")
+btn_devops_engineer = types.InlineKeyboardButton(text="DevOps-инженер", callback_data="btn_6")
+btn_project_manager = types.InlineKeyboardButton(text="Руководитель проектов", callback_data="btn_7")
+btn_presale_manager = types.InlineKeyboardButton(text="Pre-Sale менеджер", callback_data="btn_8")
+vacancy_selection_keyboard = types.InlineKeyboardMarkup(row_width=1).add(
     bth_database_administrator,
     btn_business_architect,
     btn_development_team_leader,
