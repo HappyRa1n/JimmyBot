@@ -40,17 +40,16 @@ async def cmd_start(message: types.Message):
     )
 
 
-@dp.message_handler(text=["Где находится офис?",
-                          "Расскажи о компании",
-                          "Расскажи о доступных вакансиях",
-                          "Хочу записаться на собеседование"])
-async def handling(message: types.Message):
-    if message.text == "Где находится офис?":
-        await message.answer(
-            "Адрес офиса в Перми : ул. Ленина, 77a"
+@dp.callback_query_handler(text_startswith="btn_")
+async def callbacks_num(call: types.CallbackQuery):
+    btn_number = call.data.split("_")[1]
+    if btn_number == "1":
+        await call.message.answer(
+            "В каком городе ты находишься?",
+            reply_markup=kb.city_selection_keyboard
         )
-    elif message.text == "Расскажи о компании":
-        await message.answer(
+    elif btn_number == "2":
+        await call.message.answer(
             "Группа компаний <b>PARMA Technologies Group</b> основана в 2016 году. "
             "Главным направлением деятельности является разработка заказного программного обеспечения.\n\n "
             "У нас собрана профессиональная команда, чей опыт работы на рынке информационных технологий составляет"
@@ -59,36 +58,56 @@ async def handling(message: types.Message):
             'Подробности по <a href="https://www.parma.ru/">ссылке</a>',
             disable_web_page_preview=True
         )
-    elif message.text == "Расскажи о доступных вакансиях":
-        await message.answer(
+    elif btn_number == "3":
+        await call.message.answer(
             "О какой вакансии ты бы хотел узнать?",
             reply_markup=kb.vacancy_selection_keyboard
         )
-    else:
-        await message.answer(
+    elif btn_number == "4":
+        await call.message.answer(
             "Отправьте своё резюме в этот чат, мы рассмотрим Вашу заявку и свяжемся с вами"
         )
-
-
-@dp.callback_query_handler(text_startswith="btn_")
-async def callbacks_num(call: types.CallbackQuery):
-    vacancy_num = call.data.split("_")[1]
-    if vacancy_num == "1":
+    elif btn_number == "5":
         await call.message.answer("Администратор баз данных")
-    elif vacancy_num == "2":
+    elif btn_number == "6":
         await call.message.answer("Бизнес-архитектор")
-    elif vacancy_num == "3":
+    elif btn_number == "7":
         await call.message.answer("Руководитель группы разработки")
-    elif vacancy_num == "4":
+    elif btn_number == "8":
         await call.message.answer("Специалист по оценке персонала")
-    elif vacancy_num == "5":
+    elif btn_number == "9":
         await call.message.answer("Системный архитектор")
-    elif vacancy_num == "6":
+    elif btn_number == "10":
         await call.message.answer("DevOps-инженер")
-    elif vacancy_num == "7":
+    elif btn_number == "11":
         await call.message.answer("Руководитель проектов")
-    elif vacancy_num == "8":
+    elif btn_number == "12":
         await call.message.answer("Pre-Sale менеджер")
+    elif btn_number == "13":
+        await call.message.answer_venue(
+            58.00525208845205,
+            56.2002500830642,
+            "Адрес и геометка офиса компании:",
+            "ул. Ленина, 77a"
+        )
+    elif btn_number == "14":
+        await call.message.answer_venue(
+            45.039152997105475,
+            38.986183413655006,
+            "Адрес и геометка офиса компании:",
+            "ул. Северная, 327"
+        )
+    elif btn_number == "15":
+        await call.message.answer_venue(
+            55.713253622991715,
+            37.62032107134292,
+            "Адрес и геометка офиса компании:",
+            "ул. Мытная, 66"
+        )
+    elif btn_number == "16":
+        await call.message.answer(
+            "Извините, но офисы нашей компании находятся только в указанных выше городах"
+        )
     await call.answer()
 
 
