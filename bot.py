@@ -6,7 +6,6 @@ from aiogram.utils.exceptions import BotBlocked
 from os import getenv
 from sys import exit
 
-
 bot_token = getenv("BOT_TOKEN")
 if not bot_token:
     exit("Error: no token provided")
@@ -85,22 +84,22 @@ async def callbacks_num(call: types.CallbackQuery):
         await call.message.answer("Pre-Sale менеджер")
     elif btn_number == "13":
         await call.message.answer_venue(
-            58.00525208845205,
-            56.2002500830642,
+            58.00513762428379,
+            56.200238735786556,
             "Адрес и геометка офиса компании:",
             "ул. Ленина, 77a"
         )
     elif btn_number == "14":
         await call.message.answer_venue(
-            45.039152997105475,
-            38.986183413655006,
+            45.03904199690753,
+            38.98624678752819,
             "Адрес и геометка офиса компании:",
             "ул. Северная, 327"
         )
     elif btn_number == "15":
         await call.message.answer_venue(
-            55.713253622991715,
-            37.62032107134292,
+            55.713153978710565,
+            37.62025208405767,
             "Адрес и геометка офиса компании:",
             "ул. Мытная, 66"
         )
@@ -109,6 +108,41 @@ async def callbacks_num(call: types.CallbackQuery):
             "Извините, но офисы нашей компании находятся только в указанных выше городах"
         )
     await call.answer()
+
+
+@dp.message_handler()
+async def incorrect_message(message: types.Message):
+    if message.text == "офис":
+        await message.answer(
+            "В каком городе ты находишься?",
+            reply_markup=kb.city_selection_keyboard
+        )
+    elif message.text == "вакансии":
+        await message.answer(
+            "О какой вакансии ты бы хотел узнать?",
+            reply_markup=kb.vacancy_selection_keyboard
+        )
+    elif message.text == "собеседование":
+        await message.answer(
+            "Отправьте своё резюме в этот чат, мы рассмотрим Вашу заявку и свяжемся с вами"
+        )
+    elif message.text == "компания":
+        await message.answer(
+            "Группа компаний <b>PARMA Technologies Group</b> основана в 2016 году. "
+            "Главным направлением деятельности является разработка заказного программного обеспечения.\n\n "
+            "У нас собрана профессиональная команда, чей опыт работы на рынке информационных технологий составляет"
+            "более 12 лет. Решениями, разработанными нашими специалистами, пользуются многие федеральные,"
+            "региональные и муниципальные органы государственной власти.\n\n "
+            'Подробности по <a href="https://www.parma.ru/">ссылке</a>',
+            disable_web_page_preview=True
+        )
+    else:
+        await message.reply("Лучше воспользуйся ключевыми словами")
+        await message.answer("Список ключевых слов:\n"
+                             "офис\n"
+                             "вакансии\n"
+                             "собеседование\n"
+                             "компания")
 
 
 if __name__ == "__main__":
